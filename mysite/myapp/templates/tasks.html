@@ -16,6 +16,7 @@
 
 <br>
 <br>
+
 {% if query %}
     <!-- Muestra tareas filtradas cuando se realiza una búsqueda -->
     {% for tarea in tareas %}
@@ -29,6 +30,7 @@
             </h2>
             <p>{{tarea.description}}</p>
             <p>Project: {{tarea.project.name}}</p>
+            <p>Prioridad: {{tarea.priority}}</p>
             <button class="btn btn-secondary btn-sm btn-danger">Delete</button>
             <button class="btn btn-primary btn-sm btn-light">✅ Done</button>
         </div>
@@ -50,6 +52,7 @@
             </h2>
             <p>{{tarea.description}}</p>
             <p>Project: {{tarea.project.name}}</p>
+            <p>Prioridad: {{tarea.priority}}</p>
             <button class="btn btn-secondary btn-sm btn-danger">Delete</button>
             <button class="btn btn-primary btn-sm btn-light">✅ Done</button>
         </div>

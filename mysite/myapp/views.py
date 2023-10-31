@@ -6,7 +6,7 @@ from django.contrib import messages
 
 # Create your views here.
 def index(request):
-    title = 'Django Course'
+    title = 'CODERHOUSE - CURSO PYTHON FLEX'
     return render(request, 'index.html', {
         'title': title
     })

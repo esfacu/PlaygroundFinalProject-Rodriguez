@@ -1,0 +1,19 @@
+<body>
+    {% extends 'landingpage/index.html' %}
+    {% block content %}
+
+    <h1>Welcome to Devs Section</h1>
+    <br>
+
+    <!-- <p>{{projects}}</p> -->
+    {% for developer in developers %}
+    <h2>Name: {{developer.name}}</h2>
+    <h2>Age: {{developer.edad}}</h2>
+    <br>
+
+    {% endfor %}
+
+    <br>
+    <a href="/form_dev" class="btn btn-primary mb-2">ADD NEW DEVELOPER</a>
+    {% endblock %}
+</body>

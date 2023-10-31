@@ -1,0 +1,13 @@
+{% extends 'landingpage/index.html' %}
+{% block content %}
+<h1>FORM NEW PROJECTS</h1>
+<br>
+<form method="post">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Project Label: </label>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-light mb-2">Save Project</button>
+    </div>
+</form>
+{% endblock %}

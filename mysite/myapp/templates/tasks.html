@@ -1,0 +1,59 @@
+{% extends 'landingpage/index.html' %}
+{% block content %}
+<h1>Welcome to Task</h1>
+<br>
+
+
+<!-- Agregar un formulario de búsqueda -->
+<nav class="">
+<form method="get" action="{% url 'buscar_task' %}" class="form-inline">
+    <input type="text" name="q" placeholder="SEARCH TASK" class="form-control mr-sm-2">
+    <br>
+    <input type="submit" value="Search" class="btn btn-light btn-mr">
+    <a href="/form_task" class="btn btn-primary btn-mr">ADD NEW TASK</a>
+</form>
+</nav>
+
+<br>
+<br>
+{% if query %}
+    <!-- Muestra tareas filtradas cuando se realiza una búsqueda -->
+    {% for tarea in tareas %}
+        <div>
+            <h2>
+                {# nota: condicional de tareas#}
+                {% if tarea.done == False %}🕛
+                {% else %}🆗✅
+                {% endif %}
+                {{tarea.title}}
+            </h2>
+            <p>{{tarea.description}}</p>
+            <p>Project: {{tarea.project.name}}</p>
+            <button class="btn btn-secondary btn-sm btn-danger">Delete</button>
+            <button class="btn btn-primary btn-sm btn-light">✅ Done</button>
+        </div>
+        <br>
+    {% endfor %}
+    {% if not tareas %}
+        <p>No se encontraron tareas con ese nombre.</p>
+    {% endif %}
+{% else %}
+    <!-- Muestra todas las tareas cuando no se realiza una búsqueda -->
+    {% for tarea in tareas %}
+        <div>
+            <h2>
+                {# nota: condicional de tareas#}
+                {% if tarea.done == False %}🕛
+                {% else %}🆗✅
+                {% endif %}
+                {{tarea.title}}
+            </h2>
+            <p>{{tarea.description}}</p>
+            <p>Project: {{tarea.project.name}}</p>
+            <button class="btn btn-secondary btn-sm btn-danger">Delete</button>
+            <button class="btn btn-primary btn-sm btn-light">✅ Done</button>
+        </div>
+        <br>
+    {% endfor %}
+{% endif %}
+{% endblock %}

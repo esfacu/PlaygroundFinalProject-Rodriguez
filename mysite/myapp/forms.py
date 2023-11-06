@@ -9,7 +9,7 @@ class ProjectForm(forms.ModelForm):
 class DevForm(forms.ModelForm):
     class Meta:
         model = Developers
-        fields = ['name', 'edad']
+        fields = ['name', 'edad', 'task']
         
 class TaskForm(forms.ModelForm):
     class Meta:

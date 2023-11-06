@@ -27,6 +27,10 @@ class Task(models.Model):
 class Developers(models.Model):
     name = models.CharField(max_length=200)
     edad = models.CharField(max_length=120)
-         
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    
     def __str__(self):
-        return self.name
+        return self.name + ' - ' + 'Trabajando en : ' + self.task.title
+         
+    #def __str__(self):
+     #   return self.name

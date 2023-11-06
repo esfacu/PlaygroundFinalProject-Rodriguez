@@ -7,8 +7,9 @@
 
     <!-- <p>{{projects}}</p> -->
     {% for developer in developers %}
-    <h2>Name: {{developer.name}}</h2>
-    <h2>Age: {{developer.edad}}</h2>
+    <h2>Name: ☕ {{developer.name}} - 📆 Age: {{developer.edad}}</h2>
+    <h2> - 📋 Working in: {{developer.task}}</h2>
+    <h2>-------------------------------------</h2>
     <br>
 
     {% endfor %}

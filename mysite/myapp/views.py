@@ -23,16 +23,20 @@ def about(request):
 def projects(request):
     #projects = list(Project.objects.values())
     projects = Project.objects.all()
-    return render(request, 'projects.html', {
+    return render(request, 'projects/projects.html', {
         'projects' : projects
     })
 
 def tasks(request):
     #task = get_object_or_404(Task, id=id)
     task = Task.objects.all()
-    return render(request, 'tasks.html', {
+    return render(request, 'tasks/tasks.html', {
         'task': task
     })
+    
+def eliminar_task(request, task_title):
+        task = Task.objects.get(title=task_title)
+        task.delete()
     
 def crear_proyecto(request):
     if request.method == 'POST':
@@ -43,13 +47,13 @@ def crear_proyecto(request):
     else:
         form = ProjectForm()
     
-    return render(request, 'crear_proyecto.html', {'form': form}) 
+    return render(request, 'projects/crear_proyecto.html', {'form': form}) 
 
 
 def devs(request):
     #projects = list(Project.objects.values())
     developers = Developers.objects.all()
-    return render(request, 'developers.html', {
+    return render(request, 'devs/developers.html', {
         'developers' : developers
     })
     
@@ -62,7 +66,7 @@ def crear_dev(request):
     else:
         form = DevForm()
     
-    return render(request, 'agregar_dev.html', {'form': form}) 
+    return render(request, 'devs/agregar_dev.html', {'form': form}) 
 
 def crear_task(request):
     if request.method == 'POST':
@@ -73,7 +77,7 @@ def crear_task(request):
     else:
         form = TaskForm()
     
-    return render(request, 'agregar_task.html', {'form': form}) 
+    return render(request, 'tasks/agregar_task.html', {'form': form}) 
 
 def buscar_task(request):
     query = request.GET.get('q')
@@ -83,4 +87,4 @@ def buscar_task(request):
             messages.info(request, 'No se encontraron tareas con ese nombre.')
     else:
         tareas = Task.objects.all()
-    return render(request,'tasks.html', {'tareas': tareas, 'query': query})
+    return render(request,'tasks/tasks.html', {'tareas': tareas, 'query': query})

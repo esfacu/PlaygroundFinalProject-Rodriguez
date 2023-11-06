@@ -13,4 +13,5 @@ urlpatterns = [
     path('form_dev/', views.crear_dev),
     path('form_task/', views.crear_task),
     path('buscar_task', views.buscar_task, name='buscar_task'),
+    path('eliminar_task/<task_title>', views.eliminar_task, name="Delete"),
 ]

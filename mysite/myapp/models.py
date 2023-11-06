@@ -23,6 +23,10 @@ class Task(models.Model):
     def __str__(self):
         return self.title + ' - ' + self.project.name
     
+    def eliminar_task(request, task_title):
+        task = Task.objects.get(title=task_title)
+        task.delete()
+    
     
 class Developers(models.Model):
     name = models.CharField(max_length=200)

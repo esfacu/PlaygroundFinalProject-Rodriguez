@@ -31,8 +31,11 @@
             <p>{{tarea.description}}</p>
             <p>Project: {{tarea.project.name}}</p>
             <p>Prioridad: {{tarea.priority}}</p>
-            <button class="btn btn-secondary btn-sm btn-danger">Delete</button>
-            <a class="btn btn-primary btn-sm btn-light">✅ Done</button>
+            <form method="post">
+                {% csrf_token %}
+                <a href="{% url 'task-delete' tarea.pk %}" class="btn btn-danger">Eliminar tarea</a>
+                <a class="btn btn-primary btn-sm btn-light">✅ Done</a>
+            </form>
         </div>
         <br>
     {% endfor %}
@@ -53,8 +56,12 @@
             <p>{{tarea.description}}</p>
             <p>Project: {{tarea.project.name}}</p>
             <p>Prioridad: {{tarea.priority}}</p>
-            <button class="btn btn-secondary btn-sm btn-danger">Delete</button>
-            <button class="btn btn-primary btn-sm btn-light">✅ Done</button>
+            <form method="post">
+                {% csrf_token %}
+                <a href="{% url 'task-delete' tarea.pk %}" class="btn btn-danger">Delete Task</a>
+                <a href="{% url 'update_task' pk=tarea.pk %}" class="btn btn-primary">Edit</a>
+            </form>
+            
         </div>
         <br>
     {% endfor %}

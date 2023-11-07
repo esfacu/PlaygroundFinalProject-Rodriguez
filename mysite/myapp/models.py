@@ -1,4 +1,7 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from django import forms
 
 # Create your models here.
 class Project(models.Model):
@@ -23,10 +26,6 @@ class Task(models.Model):
     def __str__(self):
         return self.title + ' - ' + self.project.name
     
-    def eliminar_task(request, task_title):
-        task = Task.objects.get(title=task_title)
-        task.delete()
-    
     
 class Developers(models.Model):
     name = models.CharField(max_length=200)
@@ -36,5 +35,17 @@ class Developers(models.Model):
     def __str__(self):
         return self.name + ' - ' + 'Trabajando en : ' + self.task.title
          
-    #def __str__(self):
-     #   return self.name
+ 
+class CustomUserCreationForm(UserCreationForm):
+    email = forms.EmailField(required=True, label='Email', widget=forms.EmailInput(attrs={'class': 'form-control'}))
+
+    class Meta:
+        model = User
+        fields = UserCreationForm.Meta.fields + ('email',)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        # Deshabilita las etiquetas de ayuda para los campos del formulario
+        for field_name, field in self.fields.items():
+            field.help_text = None

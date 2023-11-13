@@ -10,7 +10,7 @@
 
     <!-- <p>{{projects}}</p> -->
     {% for developer in developers %}
-    <h2>Name: ☕ {{developer.name}} - 📆 Age: {{developer.edad}}</h2>
+    <h2>Name: ☕ {{developer.name}} - 📆 Age: {{developer.age}}</h2>
     <h2> - 📋 Working in: {{developer.task}}</h2>
     {% if developer.imagen %}
     <img src="{{ developer.imagen.url }}" alt="" height="50px">

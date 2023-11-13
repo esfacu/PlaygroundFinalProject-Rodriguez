@@ -29,7 +29,7 @@ class Task(models.Model):
     
 class Developers(models.Model):
     name = models.CharField(max_length=200)
-    edad = models.CharField(max_length=120)
+    age = models.CharField(max_length=120)
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
     imagen = models.ImageField(upload_to='developers', null=True, blank=True)
     

@@ -41,10 +41,10 @@
                           </div>
                         {% else %}
                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            My profile
+                            {{request.user.username|title}}
                           </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="btn btn-light" href="/userEdit">Edit Profile:  {{request.user.username}}</a>
+                              <a class="btn btn-light" href="/userEdit">Edit Profile</a>
                               <a class="btn btn-light" href="/logout">Log Out</a>
                           </div>
                         {% endif %}

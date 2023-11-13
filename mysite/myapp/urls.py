@@ -37,7 +37,12 @@ urlpatterns = [
     
     #users
     path('userEdit/', views.editarPerfil, name="EditarPerfil"),
-    path('editPassword/', views.CambiarContrasenia.as_view(), name="CambiarContrasenia"),      
+    path('editPassword/', views.CambiarContrasenia.as_view(), name="CambiarContrasenia"), 
+    
+    #POLICY
+    path('contact/', views.contact, name="contact"),
+    path('privacy/', views.privacy, name="privacy"),
+    path('terms/', views.terms, name="terms"),  
 ]
 
 urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

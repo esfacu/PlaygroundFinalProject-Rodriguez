@@ -25,6 +25,16 @@ def about(request):
     username = 'Facu'
     return render(request, 'about.html', {
     })
+    
+def contact(request):
+    return render(request, 'policy/contact.html', {
+    })
+def privacy(request):
+    return render(request, 'policy/privacy.html', {
+    })
+def terms(request):
+    return render(request, 'policy/terms.html', {
+    })
 #PRIMERO TRAE LISTA COMO FUNCION LUEGO COMO CLASE DE LISTVIEW
 #def projects(request):
     #projects = list(Project.objects.values())

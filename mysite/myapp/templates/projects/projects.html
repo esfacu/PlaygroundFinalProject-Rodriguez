@@ -9,15 +9,21 @@
     {% extends 'landingpage/index.html' %}
     {% block content %}
     <h1>Welcome to Projects</h1>
-
+    <br><br>
+    <a href="/form_project" class="btn btn-primary mb-2">ADD NEW PROJECTS</a>
+    <br><br>
+    <h2>-------------------------------------</h2>
     <!-- <p>{{projects}}</p> -->
     {% for project in projects %}
     <h1> {{project.name}} ✍</h1>
+    <a href="{% url 'project_confirm_delete' pk=project.pk %}" class="btn btn-danger">Delete Project</a>
+    <a href="{% url 'update_project' pk=project.pk %}" class="btn btn-primary">Edit</a>
+    <h2>-  -   -   -   -   -   -   -   -   -</h2>
 
     {% endfor %}
 
     <br>
-    <a href="/form_project" class="btn btn-primary mb-2">ADD NEW PROJECTS</a>
+    
     {% endblock %}
 </body>
 </html>

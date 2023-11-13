@@ -4,18 +4,22 @@
 
     <h1>Welcome to Devs Section</h1>
     <br>
+    <a href="/form_dev" class="btn btn-primary mb-2">ADD NEW DEVELOPER</a>
+    <br>
+    <h1>---   ---   ---   ---   ---</h1>
 
     <!-- <p>{{projects}}</p> -->
     {% for developer in developers %}
     <h2>Name: ☕ {{developer.name}} - 📆 Age: {{developer.edad}}</h2>
     <h2> - 📋 Working in: {{developer.task}}</h2>
     <a href="{% url 'dev_confirm_delete' pk=developer.pk %}" class="btn btn-danger">Delete Dev</a>
+    <a href="{% url 'update_devs' pk=developer.pk %}" class="btn btn-primary">Edit</a>
     <h2>-------------------------------------</h2>
     <br>
 
     {% endfor %}
 
     <br>
-    <a href="/form_dev" class="btn btn-primary mb-2">ADD NEW DEVELOPER</a>
+    
     {% endblock %}
 </body>

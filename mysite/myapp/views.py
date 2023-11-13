@@ -70,12 +70,28 @@ class DevDeleteView(DeleteView):
     template_name = 'devs/devs_confirm_delete.html'
     success_url = reverse_lazy('index')
     
+class ProjectDeleteView(DeleteView):
+    model = Project
+    template_name = 'projects/projects_confirm_delete.html'
+    success_url = reverse_lazy('project-list')
     
 class TaskUpdateView(UpdateView):
     model = Task
     template_name = 'tasks/update_task.html'
     fields = ['title', 'description', 'project','done', 'priority']
-    success_url = '/'
+    success_url = 'index'
+    
+class ProjectUpdateView(UpdateView):
+    model = Project
+    template_name = 'projects/update_project.html'
+    fields = ['name']
+    success_url = reverse_lazy('project-list')
+    
+class DevsUpdateView(UpdateView):
+    model = Developers
+    template_name = 'devs/update_devs.html'
+    fields = ['name', 'edad', 'task']
+    success_url = reverse_lazy('devs-list')
     
     
 def crear_proyecto(request):
@@ -83,7 +99,7 @@ def crear_proyecto(request):
         form = ProjectForm(request.POST)
         if form.is_valid():
             form.save()  # Guarda el nuevo proyecto en la base de datos
-            return redirect('/')  # Redirige a la lista de proyectos
+            return redirect('index')  # Redirige a la lista de proyectos
     else:
         form = ProjectForm()
     
@@ -118,7 +134,7 @@ def crear_task(request):
         form = TaskForm(request.POST)
         if form.is_valid():
             form.save()  # Guarda el nuevo proyecto en la base de datos
-            return redirect('/')  # Redirige a la lista de proyectos
+            return redirect('index')  # Redirige a la lista de proyectos
     else:
         form = TaskForm()
     

@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from .models import Project, Task, Developers, CustomUserCreationForm
 from django.shortcuts import get_object_or_404, render, redirect
-from .forms import ProjectForm, DevForm, TaskForm
+from .forms import ProjectForm, DevForm, TaskForm, UserEditForm
 from django.contrib import messages
 from django.views.generic import ListView, DeleteView, UpdateView
 from django.urls import reverse_lazy
@@ -148,3 +148,18 @@ def register(request):
         form = CustomUserCreationForm()
     return render(request, 'login/registro.html', {'form': form})
         
+        
+def editarPerfil(request):
+    usuario = request.user
+    if request.method == 'POST':
+        miFormulario = UserEditForm(request.POST, instance=request.user)
+        
+        if miFormulario.is_valid():
+            miFormulario.save()
+            
+            return render(request, "index.html")
+    
+    else:
+        miFormulario = UserEditForm(instance=request.user)
+        
+    return render(request, "users/editarPerfil.html", {"miFormulario": miFormulario, "usuario": usuario})

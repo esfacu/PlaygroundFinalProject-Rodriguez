@@ -1,9 +1,8 @@
 from django.urls import path
 from . import views
 from .views import *
-#Para login
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, authenticate
+#Para logout
+from django.contrib.auth.views import LogoutView
 
 
 
@@ -30,4 +29,8 @@ urlpatterns = [
     path('login/', views.login_request, name='Login'),
     path('', views.login_request, name='Login'),
     path('registro/', views.register, name='registro'),
+    path('logout/', LogoutView.as_view(template_name='login/logout.html')),
+    
+    #users
+    path('userEdit/', views.editarPerfil, name="EditarPerfil"),
 ]

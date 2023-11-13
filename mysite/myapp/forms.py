@@ -1,6 +1,6 @@
 from django import forms
-from .models import Project, Developers, Task
-from django.contrib.auth.forms import UserCreationForm
+from .models import Project, Developers, Task, User
+from django.contrib.auth.forms import UserCreationForm, UserModel, UserChangeForm
 
 
 class ProjectForm(forms.ModelForm):
@@ -19,3 +19,12 @@ class TaskForm(forms.ModelForm):
         fields = ['title', 'description', 'project','done', 'priority']
         
         
+class UserEditForm(UserChangeForm):
+    password = None
+    email = forms.EmailField(label="Enter Mail: ")
+    last_name = forms.CharField(label="Surrname")
+    first_name = forms.CharField(label="Name")
+    
+    class Meta:
+        model = User
+        fields =  ['email', 'last_name', 'first_name']

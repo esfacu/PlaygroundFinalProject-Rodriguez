@@ -15,6 +15,10 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link rel="stylesheet" type="text/css" href="{% static 'landingpage/css/styles.css' %}">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        
+
     </head>
     <body>
         <!-- Navigation-->
@@ -25,7 +29,18 @@
                     <a class="navbar-brand" href="/tasks">Tasks</a>
                     <a class="navbar-brand" href="/devs">Devs</a>
                     <a class="navbar-brand" href="/about">About</a>
-                <a class="btn btn-primary" href="#signup">Sign Up</a>
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Sign In
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="btn btn-light" href="/login">Log In</a>
+                            <a class="btn btn-light" href="/userEdit">Edit Profile</a>
+                            <a class="btn btn-light" href="/registro">Register</a>
+                            <a class="btn btn-light" href="/logout">Log Out</a>
+                        </div>
+                    </div>
+                
             </div>
         </nav>
         <!-- Masthead-->

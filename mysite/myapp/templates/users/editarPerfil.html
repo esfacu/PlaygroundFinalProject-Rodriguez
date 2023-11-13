@@ -1,0 +1,18 @@
+{% extends 'landingpage/index.html' %}
+{% block content %}
+<h1>USERS PROFILE EDIT</h1>
+<br>
+<form action="" method="POST">{% csrf_token %}
+
+    <!-- Acá está la magia de Django-->
+    
+    <table>
+
+        {{ miFormulario }}
+
+    </table>
+
+    <input type="submit", value="Enviar">
+
+</form>  
+{% endblock %}

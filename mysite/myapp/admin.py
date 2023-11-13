@@ -1,9 +1,11 @@
 from django.contrib import admin
-from .models import Project, Task, Developers
+from myapp import models
 
 # Register your models here.
-admin.site.register(Project)
+admin.site.register(models.Project)
 
-admin.site.register(Task)
+admin.site.register(models.Task)
 
-admin.site.register(Developers)
+admin.site.register(models.Developers)
+
+admin.site.register(models.Avatar)

@@ -157,8 +157,11 @@ def editarPerfil(request):
         miFormulario = UserEditForm(request.POST, instance=request.user)
         
         if miFormulario.is_valid():
+            if miFormulario.cleaned_data.get('imagen'):
+                usuario.avatar.imagen = miFormulario.cleaned_data.get('imagen')
+                usuario.avatar.save()
+                
             miFormulario.save()
-            
             return render(request, "index.html")
     
     else:

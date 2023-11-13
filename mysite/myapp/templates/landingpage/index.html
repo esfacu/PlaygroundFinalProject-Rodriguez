@@ -30,15 +30,27 @@
                     <a class="navbar-brand" href="/devs">Devs</a>
                     <a class="navbar-brand" href="/about">About</a>
                     <div class="dropdown">
+
+                        {% if not request.user.is_authenticated %}
                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Sign In
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="btn btn-light" href="/login">Log In</a>
-                            <a class="btn btn-light" href="/userEdit">Edit Profile</a>
-                            <a class="btn btn-light" href="/registro">Register</a>
-                            <a class="btn btn-light" href="/logout">Log Out</a>
-                        </div>
+                            Sign In
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="btn btn-light" href="/login">Log In</a>
+                              <a class="btn btn-light" href="/registro">Register</a>
+                          </div>
+                        {% else %}
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            My profile
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="btn btn-light" href="/userEdit">Edit Profile:  {{request.user.username}}</a>
+                              <a class="btn btn-light" href="/logout">Log Out</a>
+                          </div>
+                        {% endif %}
+                        {% if request.user.avatar %}
+                        <img src="{{request.user.avatar.imagen.url}}" alt="" height="40px">
+                        {% endif %}
                     </div>
                 
             </div>

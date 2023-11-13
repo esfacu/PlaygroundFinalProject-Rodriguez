@@ -4,6 +4,10 @@ from .views import *
 #Para logout
 from django.contrib.auth.views import LogoutView
 
+#PARA LAS IMAGENES
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 
 
@@ -33,5 +37,7 @@ urlpatterns = [
     
     #users
     path('userEdit/', views.editarPerfil, name="EditarPerfil"),
-    path('editPassword/', views.CambiarContrasenia.as_view(), name="CambiarContrasenia"),    
+    path('editPassword/', views.CambiarContrasenia.as_view(), name="CambiarContrasenia"),      
 ]
+
+urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -1,5 +1,7 @@
 {% extends 'landingpage/index.html' %}
 {% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'register/css/estiloregistro.css' %}">
 <h1>USERS PROFILE EDIT</h1>
 <br>
 <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}

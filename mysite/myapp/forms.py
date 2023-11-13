@@ -9,9 +9,11 @@ class ProjectForm(forms.ModelForm):
         fields = ['name']
 
 class DevForm(forms.ModelForm):
+    imagen = forms.ImageField(required=False, label='Imagen')
+    
     class Meta:
         model = Developers
-        fields = ['name', 'edad', 'task']
+        fields = ['name', 'edad', 'task', 'imagen']
         
 class TaskForm(forms.ModelForm):
     class Meta:

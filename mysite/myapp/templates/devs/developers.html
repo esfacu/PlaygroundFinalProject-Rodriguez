@@ -12,6 +12,9 @@
     {% for developer in developers %}
     <h2>Name: ☕ {{developer.name}} - 📆 Age: {{developer.edad}}</h2>
     <h2> - 📋 Working in: {{developer.task}}</h2>
+    {% if developer.imagen %}
+    <img src="{{ developer.imagen.url }}" alt="" height="50px">
+    {% endif %}
     <a href="{% url 'dev_confirm_delete' pk=developer.pk %}" class="btn btn-danger">Delete Dev</a>
     <a href="{% url 'update_devs' pk=developer.pk %}" class="btn btn-primary">Edit</a>
     <h2>-------------------------------------</h2>

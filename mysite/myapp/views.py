@@ -90,8 +90,19 @@ class ProjectUpdateView(UpdateView):
 class DevsUpdateView(UpdateView):
     model = Developers
     template_name = 'devs/update_devs.html'
-    fields = ['name', 'edad', 'task']
-    success_url = reverse_lazy('devs-list')
+    form_class = DevForm
+    def form_valid(self, form):
+        # Actualiza la imagen solo si se proporciona una nueva imagen
+        if form.cleaned_data['imagen']:
+            # Elimina la imagen antigua antes de guardar la nueva
+            old_imagen = self.get_object().imagen
+            if old_imagen:
+                old_imagen.delete(save=False)
+
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('devs-list')
     
     
 def crear_proyecto(request):
@@ -120,13 +131,13 @@ class DevsListView(ListView):
     
 def crear_dev(request):
     if request.method == 'POST':
-        form = DevForm(request.POST)
+        form = DevForm(request.POST, request.FILES)  #  `request.FILES` para manejar archivos
         if form.is_valid():
-            form.save()  # Guarda el nuevo proyecto en la base de datos
-            return redirect('/index')  # Redirige a la lista de proyectos
+            form.save()
+            return redirect('/devs')
     else:
         form = DevForm()
-    
+
     return render(request, 'devs/agregar_dev.html', {'form': form}) 
 
 def crear_task(request):

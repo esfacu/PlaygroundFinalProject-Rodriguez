@@ -1,0 +1,11 @@
+{% extends 'landingpage/index.html' %}
+{% block content %}
+  <h1>Confirmar eliminación de Developer</h1>
+  <p>Are you sure you want to delete the dev "{{ developer.name }}"?</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Delete </button>
+    <a href="{% url 'devs-list' %}" class="btn btn-primary">Exit </a>
+  </form>
+{% endblock %}

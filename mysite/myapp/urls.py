@@ -25,6 +25,8 @@ urlpatterns = [
     #path('devs/', views.devs),
     path('devs/', DevsListView.as_view(), name='devs-list'),
     path('form_dev/', views.crear_dev),
+    path('delete_dev/<int:pk>/', DevDeleteView.as_view(),name="dev_confirm_delete"),
+    #task
     path('form_task/', views.crear_task),
     path('tasks/<int:pk>/update_task/', views.TaskUpdateView.as_view(), name='update_task'),
     path('buscar_task', views.buscar_task, name='buscar_task'),

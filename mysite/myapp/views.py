@@ -7,6 +7,8 @@ from django.views.generic import ListView, DeleteView, UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
@@ -163,3 +165,10 @@ def editarPerfil(request):
         miFormulario = UserEditForm(instance=request.user)
         
     return render(request, "users/editarPerfil.html", {"miFormulario": miFormulario, "usuario": usuario})
+
+
+class CambiarContrasenia(LoginRequiredMixin, PasswordChangeView):
+    template_name = "users/editPassword.html"
+    success_url = reverse_lazy('EditarPerfil')
+    
+    

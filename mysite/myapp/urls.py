@@ -33,4 +33,5 @@ urlpatterns = [
     
     #users
     path('userEdit/', views.editarPerfil, name="EditarPerfil"),
+    path('editPassword/', views.CambiarContrasenia.as_view(), name="CambiarContrasenia"),    
 ]

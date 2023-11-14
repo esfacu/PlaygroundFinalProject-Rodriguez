@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from .models import Project, Task, Developers, CustomUserCreationForm
+from .models import Project, Task, Developers, CustomUserCreationForm, Avatar
 from django.shortcuts import get_object_or_404, render, redirect
 from .forms import ProjectForm, DevForm, TaskForm, UserEditForm
 from django.contrib import messages
@@ -237,21 +237,25 @@ def register(request):
         
 def editarPerfil(request):
     usuario = request.user
+
     if request.method == 'POST':
-        miFormulario = UserEditForm(request.POST, instance=request.user)
-        
+        miFormulario = UserEditForm(request.POST, request.FILES, instance=request.user)
+
         if miFormulario.is_valid():
             if miFormulario.cleaned_data.get('imagen'):
-                usuario.avatar.imagen = miFormulario.cleaned_data.get('imagen')
-                usuario.avatar.save()
-                
+                avatar, created = Avatar.objects.get_or_create(user=usuario)
+                avatar.imagen = miFormulario.cleaned_data.get('imagen')
+                avatar.save()
+
             miFormulario.save()
             return render(request, "index.html")
-    
+
     else:
         miFormulario = UserEditForm(instance=request.user)
-        
+
     return render(request, "users/editarPerfil.html", {"miFormulario": miFormulario, "usuario": usuario})
+
+
 
 
 class CambiarContrasenia(LoginRequiredMixin, PasswordChangeView):

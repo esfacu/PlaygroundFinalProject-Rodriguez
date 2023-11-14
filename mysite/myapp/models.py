@@ -35,8 +35,7 @@ class Developers(models.Model):
     
     def __str__(self):
         return self.name + ' - ' + 'Trabajando en : ' + self.task.title
-
-         
+    
  
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True, label='Email', widget=forms.EmailInput(attrs={'class': 'form-control'}))
@@ -58,3 +57,4 @@ class Avatar(models.Model):
     def __str__(self):
         return f"{self.user} - {self.imagen}"
     
+

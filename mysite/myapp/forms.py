@@ -28,8 +28,7 @@ class UserEditForm(UserChangeForm):
     last_name = forms.CharField(label="Surrname")
     first_name = forms.CharField(label="Name")
     imagen = forms.ImageField(label="Avatar", required=False)
-    description = forms.CharField(label="Description", required="False")
-    url = forms.CharField(label="Url", required="False")
+
     
     class Meta:
         model = User

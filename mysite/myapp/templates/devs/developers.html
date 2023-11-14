@@ -4,20 +4,28 @@
 
     <h1>Welcome to Devs Section</h1>
     <br>
+    <form class="card">
     <a href="/form_dev" class="btn btn-primary mb-2">ADD NEW DEVELOPER</a>
+    </form>
     <br>
     <h1>---   ---   ---   ---   ---</h1>
 
     <!-- <p>{{projects}}</p> -->
     {% for developer in developers %}
-    <h2>Name: ☕ {{developer.name}} - 📆 Age: {{developer.age}}</h2>
-    <h2> - 📋 Working in: {{developer.task}}</h2>
+    
+    <div class=class="card-body">
+    <h2 class="card-title">Name: ☕ {{developer.name}} - 📆 Age: {{developer.age}}</h2>
+    <h2 class="card-text"> - 📋 Working in: {{developer.task}}</h2>
     {% if developer.imagen %}
-    <img src="{{ developer.imagen.url }}" alt="" height="50px">
+    <img src="{{ developer.imagen.url }}" alt="" height="100px" class="img" class="card-img-top" alt="Card image cap">
     {% endif %}
+    <form class="card">
     <a href="{% url 'dev_confirm_delete' pk=developer.pk %}" class="btn btn-danger">Delete Dev</a>
     <a href="{% url 'update_devs' pk=developer.pk %}" class="btn btn-primary">Edit</a>
+    </form>
     <h2>-------------------------------------</h2>
+    </div>
+    
     <br>
 
     {% endfor %}

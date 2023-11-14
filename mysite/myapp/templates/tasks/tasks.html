@@ -54,10 +54,10 @@
                 {% endif %}
                 {{tarea.title}}
             </h2>
-            <p>{{tarea.description}}</p>
-            <p>Project: {{tarea.project.name}}</p>
+            <p class="card-text">{{tarea.description}}</p>
+            <p class="card-title">Project: {{tarea.project.name}}</p>
             <p>Prioridad: {{tarea.priority}}</p>
-            <form method="post">
+            <form method="post" class="card">
                 {% csrf_token %}
                 <a href="{% url 'task-confirm_delete' pk=tarea.pk %}" class="btn btn-danger">Delete Task</a>
                 <a href="{% url 'update_task' pk=tarea.pk %}" class="btn btn-primary">Edit</a>

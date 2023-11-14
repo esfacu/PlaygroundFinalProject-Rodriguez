@@ -3,13 +3,16 @@ from .models import Project, Task, Developers, CustomUserCreationForm
 from django.shortcuts import get_object_or_404, render, redirect
 from .forms import ProjectForm, DevForm, TaskForm, UserEditForm
 from django.contrib import messages
-from django.views.generic import ListView, DeleteView, UpdateView
+from django.views.generic import ListView, DeleteView, UpdateView, TemplateView
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.views import PasswordChangeView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.http import HttpResponseForbidden
+from django.views import View
 
+  
 
 # Create your views here.
 def index(request):
@@ -60,34 +63,66 @@ class TaskListView(ListView):
     template_name = 'tasks/tasks.html'
     context_object_name = 'tasks'
     
-class TaskDeleteView(DeleteView):
+class TaskDeleteView(PermissionRequiredMixin ,DeleteView):
     model = Task
     template_name = 'tasks/task_confirm_delete.html'
     success_url = reverse_lazy('task-list')
+    permission_required = 'myapp.delete_task'
+    permission_denied_message = 'No estas autorizado'
     
-class DevDeleteView(DeleteView):
+    def handle_no_permission(self):
+        messages.error(self.request, self.permission_denied_message)
+        return render(self.request, 'errores/403.html', status=403)
+    
+      
+class DevDeleteView(PermissionRequiredMixin ,DeleteView):
     model = Developers
     template_name = 'devs/devs_confirm_delete.html'
     success_url = reverse_lazy('index')
+    permission_required = 'myapp.delete_developers'
+    permission_denied_message = 'No estas autorizado'
     
-class ProjectDeleteView(DeleteView):
+    def handle_no_permission(self):
+        messages.error(self.request, self.permission_denied_message)
+        return render(self.request, 'errores/403.html', status=403)
+    
+    
+class ProjectDeleteView(PermissionRequiredMixin, DeleteView):
     model = Project
     template_name = 'projects/projects_confirm_delete.html'
     success_url = reverse_lazy('project-list')
+    permission_required = 'myapp.delete_project'
+    permission_denied_message = 'No estas autorizado'
     
-class TaskUpdateView(UpdateView):
+    def handle_no_permission(self):
+        messages.error(self.request, self.permission_denied_message)
+        return render(self.request, 'errores/403.html', status=403)
+    
+class TaskUpdateView(PermissionRequiredMixin, UpdateView):
     model = Task
     template_name = 'tasks/update_task.html'
     fields = ['title', 'description', 'project','done', 'priority']
     success_url = reverse_lazy('task-list')
+    permission_required = 'myapp.update_task'
+    permission_denied_message = 'No estas autorizado'
     
-class ProjectUpdateView(UpdateView):
+    def handle_no_permission(self):
+        messages.error(self.request, self.permission_denied_message)
+        return render(self.request, 'errores/403.html', status=403)
+    
+class ProjectUpdateView(PermissionRequiredMixin,UpdateView):
     model = Project
     template_name = 'projects/update_project.html'
     fields = ['name']
     success_url = reverse_lazy('project-list')
+    permission_required = 'myapp.update_project'
+    permission_denied_message = 'No estas autorizado'
     
-class DevsUpdateView(UpdateView):
+    def handle_no_permission(self):
+        messages.error(self.request, self.permission_denied_message)
+        return render(self.request, 'errores/403.html', status=403)
+    
+class DevsUpdateView(PermissionRequiredMixin, UpdateView):
     model = Developers
     template_name = 'devs/update_devs.html'
     form_class = DevForm
@@ -103,6 +138,13 @@ class DevsUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('devs-list')
+    
+    permission_required = 'myapp.update_developers'
+    permission_denied_message = 'No estas autorizado'
+    
+    def handle_no_permission(self):
+        messages.error(self.request, self.permission_denied_message)
+        return render(self.request, 'errores/403.html', status=403)
     
     
 def crear_proyecto(request):
@@ -215,5 +257,4 @@ def editarPerfil(request):
 class CambiarContrasenia(LoginRequiredMixin, PasswordChangeView):
     template_name = "users/editPassword.html"
     success_url = reverse_lazy('EditarPerfil')
-    
     

@@ -3,6 +3,8 @@ from . import views
 from .views import *
 #Para logout
 from django.contrib.auth.views import LogoutView
+from django.conf.urls import handler403
+
 
 #PARA LAS IMAGENES
 from django.conf import settings
@@ -48,6 +50,9 @@ urlpatterns = [
     path('contact/', views.contact, name="contact"),
     path('privacy/', views.privacy, name="privacy"),
     path('terms/', views.terms, name="terms"),  
+    #path('error/noaut.html', YourErrorView.as_view(), name='perms-denied'),  
+    
 ]
+
 
 urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

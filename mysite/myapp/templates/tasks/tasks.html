@@ -34,7 +34,7 @@
             <p>Prioridad: {{tarea.priority}}</p>
             <form method="post">
                 {% csrf_token %}
-                <a href="{% url 'task-delete' tarea.pk %}" class="btn btn-danger">Eliminar tarea</a>
+                <a href="{% url 'task-confirm_delete' pk=tarea.pk %}" class="btn btn-danger">Delete task</a>
                 <a class="btn btn-primary btn-sm btn-light">✅ Done</a>
             </form>
         </div>

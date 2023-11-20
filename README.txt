@@ -22,5 +22,7 @@
 6 -- DENTRO DE CADA TASK TENEMOS ICONOS, RELOJITO PARA IDENTIFICAR TAREA PENDIENTE (DONE = FALSE) O CHECK VERDE + OK EN CASO DE TAREA REALIZADA (DONE = TRUE)
 
 
+LINK VIDEO : https://youtu.be/45DrwSLds9w
+LINK REPOSITORIO: https://github.com/esfacu/PlaygroundFinalProject-Rodriguez
+LINK PAGINA DESPLEGADA: https://facundorodriguez.pythonanywhere.com/index/ 
 
-LINK REPOSITORIO: https://github.com/esfacu/Pre-Entrega3

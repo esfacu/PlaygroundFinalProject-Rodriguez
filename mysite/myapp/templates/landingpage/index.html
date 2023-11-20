@@ -24,11 +24,11 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="/index">Home</a>
-                    <a class="navbar-brand" href="/projects">Projects</a>
-                    <a class="navbar-brand" href="/tasks">Tasks</a>
-                    <a class="navbar-brand" href="/devs">Devs</a>
-                    <a class="navbar-brand" href="/about">About</a>
+                    <a class="navbar-brand" href="{% url 'index' %}">Home</a>
+                    <a class="navbar-brand" href="{% url 'project-list' %}">Projects</a>
+                    <a class="navbar-brand" href="{% url 'task-list' %}">Tasks</a>
+                    <a class="navbar-brand" href="{% url 'devs-list' %}">Devs</a>
+                    <a class="navbar-brand" href="{% url 'about' %}">About</a>
                     <div class="dropdown">
 
                         {% if not request.user.is_authenticated %}
@@ -90,7 +90,7 @@
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                         <ul class="list-inline mb-2">
-                            <li class="list-inline-item"><a href="/about">About</a></li>
+                            <li class="list-inline-item"><a href="{% url 'about' %}"></li>
                             <li class="list-inline-item">⋅</li>
                             <li class="list-inline-item"><a href="{% url 'contact' %}">Contact</a></li>
                             <li class="list-inline-item">⋅</li>

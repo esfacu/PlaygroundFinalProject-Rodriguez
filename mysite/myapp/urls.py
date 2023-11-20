@@ -15,7 +15,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('index/', views.index, name='index'),
-    path('about/', views.about),
+    path('about/', views.about, name="about"),
     path('hello/<str:username>', views.hello),
     #path('projects/', views.projects),
     path('projects/', ProjectListView.as_view(), name='project-list'),

@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from .models import Project, Task, Developers, CustomUserCreationForm, Avatar
 from django.shortcuts import get_object_or_404, render, redirect
@@ -11,40 +12,40 @@ from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import HttpResponseForbidden
 from django.views import View
-
-  
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 # Create your views here.
+@login_required(login_url='/login/')
 def index(request):
     title = 'CODERHOUSE - CURSO PYTHON FLEX'
-    return render(request, 'index.html', {
-        'title': title
-    })
+    return render(request, 'index.html', {'title': title})
 
+@login_required(login_url='/login/')
 def hello(request):
     return HttpResponse(request)
 
+@login_required(login_url='/login/')
 def about(request):
     username = 'Facu'
-    return render(request, 'about.html', {
-    })
-    
+    return render(request, 'about.html', {})
+
+@login_required(login_url='/login/')
 def contact(request):
-    return render(request, 'policy/contact.html', {
-    })
+    return render(request, 'policy/contact.html', {})
+
+@login_required(login_url='/login/')
 def privacy(request):
-    return render(request, 'policy/privacy.html', {
-    })
+    return render(request, 'policy/privacy.html', {})
+
+@login_required(login_url='/login/')
 def terms(request):
-    return render(request, 'policy/terms.html', {
-    })
-#PRIMERO TRAE LISTA COMO FUNCION LUEGO COMO CLASE DE LISTVIEW
-#def projects(request):
-    #projects = list(Project.objects.values())
-    #projects = Project.objects.all()
-    #return render(request, 'projects/projects.html', {
-     #   'projects' : projects
-    #})
+    return render(request, 'policy/terms.html', {})
+
+# Resto de las vistas...
+
+# Aplicar el decorador a una clase basada en vistas
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class ProjectListView(ListView):
     model = Project
     template_name = 'projects/projects.html'
@@ -58,6 +59,7 @@ class ProjectListView(ListView):
     #    'task': task
     #})
     
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class TaskListView(ListView):
     model = Task
     template_name = 'tasks/tasks.html'
@@ -74,7 +76,7 @@ class TaskDeleteView(PermissionRequiredMixin ,DeleteView):
         messages.error(self.request, self.permission_denied_message)
         return render(self.request, 'errores/403.html', status=403)
     
-      
+     
 class DevDeleteView(PermissionRequiredMixin ,DeleteView):
     model = Developers
     template_name = 'devs/devs_confirm_delete.html'
@@ -166,6 +168,7 @@ def crear_proyecto(request):
   #      'developers' : developers
    # })
 
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class DevsListView(ListView):
     model = Developers
     template_name = 'devs/developers.html'
